@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - MatchMe AI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('/static/bf.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .results-container {
+            background: rgba(0, 0, 0, 0.61);
+            border-radius: 12px;
+            padding: 3em;
+            width: 90%;
+            max-width: 2300px;
+            height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(87, 8, 87, 0.8), 0 0 20px rgba(255, 0, 255, 0.6), 0 0 30px rgba(77, 5, 77, 0.4), 0 0 40px rgba(255, 0, 255, 0.2); /* Glowing effect */
+            margin-bottom: 0.2em;
+            letter-spacing: 1px;
+            text-align: center;
+            word-wrap: break-word; 
+            white-space: normal; 
+            word-break: break-word; 
+        }
+
+        .result-item {
+            background: rgba(0, 0, 0, 0.531);
+            border-radius: 8px;
+            padding: 1.2em;
+            margin: 1em 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            text-align: left;
+        }
+
+        .result-item h3 {
+            font-size: 1.4em;
+            color: #5E0086;
+            margin: 0 0 0.5em;
+            text-transform: uppercase;
+        }
+
+        .result-item p {
+            font-size: 1em;
+            color: #e0e0e0;
+            margin: 0.5em 0;
+        }
+
+        .result-item .score {
+            font-size: 1.1em;
+            color: #DC67A9;
+            font-weight: bold;
+        }
+
+        a {
+            font-size: 1.1em;
+            color: #5E0086;
+            text-decoration: none;
+            margin-top: 2em;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Styling for small screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .results-container {
+                padding: 2em;
+                height: 85%;
+            }
+
+            .result-item h3 {
+                font-size: 1.2em;
+            }
+
+            .result-item p {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container">
+        <h1>MatchMe AI - Results</h1>
+        <div>
+            {% for result in results %}
+                <div class="result-item">
+                    <h3>{{ result['Title'] or result['File'] }}</h3>
+                    <p>{{ result['Text Preview'] or result['Description'] }}</p>
+                    <div class="score">Score: {{ result['Score'] }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
